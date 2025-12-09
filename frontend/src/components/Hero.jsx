@@ -146,6 +146,9 @@ const Hero = () => {
                     src="/images/hero-bottle.png"
                     alt="Premium AquaDrops Water Bottle Mockup"
                     className="w-auto h-64 md:h-96 object-contain drop-shadow-2xl group-hover:drop-shadow-3xl transition-all duration-500 mix-blend-multiply"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
                     style={{
                       filter: 'contrast(1.05) saturate(1.1) brightness(1.02) drop-shadow(0 20px 40px rgba(14, 165, 233, 0.15))'
                     }}
@@ -188,6 +191,8 @@ const Hero = () => {
                   src="/images/wedding.png"
                   alt="Wedding Events"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(96, 165, 250, 0.9)', color: 'white' }}>
@@ -209,6 +214,8 @@ const Hero = () => {
                   src="/images/meetings.png"
                   alt="Corporate Events"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(14, 165, 233, 0.9)', color: 'white' }}>
@@ -230,6 +237,8 @@ const Hero = () => {
                   src="/images/hotels.png"
                   alt="Hotel Hospitality"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(96, 165, 250, 0.9)', color: 'white' }}>
