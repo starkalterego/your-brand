@@ -43,60 +43,59 @@ const BottleMockup = () => {
   }
 
   return (
-    <section id="mockup" className="py-16 md:py-24 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #F0F4F8, #ffffff, #F0F4F8)' }}>
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-64 md:w-96 h-64 md:h-96 rounded-full blur-3xl" style={{ backgroundColor: '#60A5FA' }}></div>
-        <div className="absolute bottom-0 right-1/4 w-64 md:w-96 h-64 md:h-96 rounded-full blur-3xl" style={{ backgroundColor: '#0EA5E9' }}></div>
-      </div>
-
-      <div className="container-custom relative z-10 px-4">
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6" style={{ color: '#1E293B' }}>
+    <section id="mockup" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #F0F4F8, #ffffff, #F0F4F8)' }}>
+      <div className="container-custom px-4">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
+            Design Preview
+          </div>
+          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
             Visualize Your
-            <br />
-            <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to right, #60A5FA, #0EA5E9)' }}>Custom Label</span>
+            <span style={{ color: '#60A5FA' }}> Custom Label</span>
           </h2>
-          <p className="text-sm md:text-base lg:text-lg leading-relaxed" style={{ color: '#64748B' }}>
-            Upload your design and see it come to life on our premium water bottle. Get an instant preview of how your brand will look with our interactive mockup tool.
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed" style={{ color: '#64748B' }}>
+            Upload your design and preview it on our premium water bottle
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           {/* Upload Section */}
-          <div className="space-y-4 md:space-y-6">
+          <div className="space-y-3 md:space-y-6">
             {/* Upload Box */}
             <div
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
-              className="relative border-2 border-dashed rounded-xl md:rounded-2xl p-8 md:p-12 text-center transition-all duration-300 cursor-pointer group"
+              className="relative border-2 border-dashed rounded-2xl md:rounded-3xl p-8 md:p-12 text-center transition-all duration-300 cursor-pointer hover:shadow-lg"
               style={{
                 borderColor: isDragging ? '#0EA5E9' : '#CBD5E1',
-                backgroundColor: isDragging ? '#F0F9FF' : '#F0F4F8',
-                transform: isDragging ? 'scale(1.05)' : 'scale(1)',
-                boxShadow: isDragging ? '0 10px 40px rgba(14, 165, 233, 0.2)' : 'none'
+                backgroundColor: isDragging ? '#F0F9FF' : 'white'
               }}
             >
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 id="fileUpload"
               />
               
-              <div className="pointer-events-none">
-                <div className="inline-flex h-12 md:h-16 w-12 md:w-16 rounded-xl md:rounded-2xl items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
-                  <Upload className="h-6 md:h-8 w-6 md:w-8" style={{ color: '#60A5FA' }} />
+              <div className="relative">
+                <div className="inline-flex h-14 md:h-16 w-14 md:w-16 rounded-xl md:rounded-2xl items-center justify-center mb-4 shadow-md" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
+                  {uploadedImage ? (
+                    <Eye className="h-7 md:h-8 w-7 md:w-8" style={{ color: '#60A5FA' }} />
+                  ) : (
+                    <Upload className="h-7 md:h-8 w-7 md:w-8" style={{ color: '#60A5FA' }} />
+                  )}
                 </div>
                 <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#1E293B' }}>
-                  {uploadedImage ? '✨ Design Uploaded!' : 'Upload Your Design'}
+                  {uploadedImage ? 'Design Uploaded!' : 'Upload Your Design'}
                 </h3>
                 <p className="mb-2 font-medium text-sm md:text-base" style={{ color: '#64748B' }}>
                   {uploadedImage ? 'Click to change or drag to replace' : 'Drag and drop or click to browse'}
                 </p>
-                <p className="text-sm" style={{ color: '#94A3B8' }}>
+                <p className="text-xs md:text-sm" style={{ color: '#94A3B8' }}>
                   PNG, JPG, SVG up to 10MB
                 </p>
               </div>
@@ -104,7 +103,7 @@ const BottleMockup = () => {
 
             {/* Image Preview Card */}
             {uploadedImage && (
-              <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border hover:shadow-xl transition-all" style={{ borderColor: '#CBD5E1' }}>
+              <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-lg border transition-all" style={{ borderColor: '#CBD5E1' }}>
                 <div className="flex items-center justify-between mb-3 md:mb-4">
                   <h4 className="font-semibold flex items-center gap-2 text-sm md:text-base" style={{ color: '#1E293B' }}>
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
@@ -113,22 +112,24 @@ const BottleMockup = () => {
                   <button
                     onClick={clearImage}
                     className="text-gray-400 hover:text-red-500 transition-colors p-1 hover:bg-red-50 rounded-lg"
+                    aria-label="Remove image"
                   >
                     <X className="h-5 w-5" />
                   </button>
                 </div>
-                <img
-                  src={uploadedImage}
-                  alt="Uploaded design"
-                  className="w-full h-32 md:h-48 object-contain rounded-xl border"
-                  style={{ background: 'linear-gradient(to bottom right, #F0F4F8, #ffffff)', borderColor: '#CBD5E1' }}
-                />
+                <div className="rounded-xl md:rounded-2xl overflow-hidden border" style={{ background: 'linear-gradient(to bottom right, #F0F4F8, #ffffff)', borderColor: '#CBD5E1' }}>
+                  <img
+                    src={uploadedImage}
+                    alt="Uploaded design"
+                    className="w-full h-32 md:h-48 object-contain p-4"
+                  />
+                </div>
                 <div className="mt-3 md:mt-4 flex flex-col sm:flex-row gap-2 md:gap-3">
                   <button className="flex-1 text-white px-4 py-2.5 md:py-3 rounded-lg hover:shadow-lg transition-all text-xs md:text-sm font-semibold flex items-center justify-center gap-2 group" style={{ background: 'linear-gradient(to right, #0EA5E9, #06B6D4)', boxShadow: '0 4px 15px rgba(14, 165, 233, 0.3)' }}>
                     <Download className="h-4 w-4 group-hover:scale-110 transition-transform" />
                     Download
                   </button>
-                  <label htmlFor="fileUpload" className="flex-1 px-4 py-3 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer" style={{ backgroundColor: '#F0F4F8', color: '#475569' }}>
+                  <label htmlFor="fileUpload" className="flex-1 px-4 py-2.5 md:py-3 rounded-lg transition-all text-xs md:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer" style={{ backgroundColor: '#F0F4F8', color: '#475569' }}>
                     <RefreshCw className="h-4 w-4" />
                     Change
                   </label>
@@ -150,16 +151,16 @@ const BottleMockup = () => {
           </div>
 
           {/* Bottle Preview */}
-          <div className="relative flex items-center justify-center py-6 md:py-8">
+          <div className="relative flex items-center justify-center py-6 md:py-8 order-first lg:order-last">
             {/* Bottle Container */}
-            <div className="relative w-full max-w-xs md:max-w-sm">
+            <div className="relative w-full max-w-[280px] sm:max-w-xs md:max-w-sm">
               {/* Soft background glow */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-48 md:w-72 h-[350px] md:h-[500px] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(96, 165, 250, 0.12), rgba(240, 244, 248, 0.15))' }}></div>
               </div>
 
               {/* Main Bottle Structure */}
-              <div className="relative mx-auto" style={{ width: '150px', height: '420px' }}>
+              <div className="relative mx-auto scale-90 sm:scale-100" style={{ width: '150px', height: '420px' }}>
                 
                 {/* Bottle Cap - Dark Blue/Black */}
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 z-30" style={{ width: '65px' }}>
@@ -273,40 +274,37 @@ const BottleMockup = () => {
         {/* Features Grid */}
         <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <div className="relative group">
-            <div className="absolute inset-0 rounded-xl md:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: 'linear-gradient(to right, rgba(96, 165, 250, 0.15), rgba(14, 165, 233, 0.15))' }}></div>
-            <div className="relative rounded-xl md:rounded-2xl p-6 md:p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
+            <div className="rounded-xl md:rounded-2xl p-6 md:p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
               <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
                 <Palette className="h-5 md:h-6 w-5 md:w-6" style={{ color: '#60A5FA' }} />
               </div>
               <h3 className="text-base md:text-lg font-bold mb-2" style={{ color: '#1E293B' }}>Custom Design</h3>
               <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                Upload your unique design and see exactly how it will appear on your custom water bottles.
+                Upload your unique design and preview it on the bottle
               </p>
             </div>
           </div>
 
           <div className="relative group">
-            <div className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: 'linear-gradient(to right, rgba(96, 165, 250, 0.15), rgba(14, 165, 233, 0.15))' }}></div>
-            <div className="relative rounded-2xl p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
-                <Eye className="h-6 w-6" style={{ color: '#60A5FA' }} />
+            <div className="rounded-xl md:rounded-2xl p-6 md:p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
+              <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
+                <Eye className="h-5 md:h-6 w-5 md:w-6" style={{ color: '#60A5FA' }} />
               </div>
-              <h3 className="text-lg font-bold mb-2" style={{ color: '#1E293B' }}>Instant Preview</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                Get real-time visualization of your label on a 500ml premium bottle before placing your order.
+              <h3 className="text-base md:text-lg font-bold mb-2" style={{ color: '#1E293B' }}>Instant Preview</h3>
+              <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
+                Real-time visualization on a 500ml premium bottle
               </p>
             </div>
           </div>
 
           <div className="relative group">
-            <div className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: 'linear-gradient(to right, rgba(96, 165, 250, 0.15), rgba(14, 165, 233, 0.15))' }}></div>
-            <div className="relative rounded-2xl p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
-                <Download className="h-6 w-6" style={{ color: '#60A5FA' }} />
+            <div className="rounded-xl md:rounded-2xl p-6 md:p-8 border transition-all" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}>
+              <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #F0F4F8)' }}>
+                <Download className="h-5 md:h-6 w-5 md:w-6" style={{ color: '#60A5FA' }} />
               </div>
-              <h3 className="text-lg font-bold mb-2" style={{ color: '#1E293B' }}>Easy Download</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                Download high-resolution previews to share with your team or print for approval.
+              <h3 className="text-base md:text-lg font-bold mb-2" style={{ color: '#1E293B' }}>Easy Download</h3>
+              <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
+                Download previews to share with your team
               </p>
             </div>
           </div>

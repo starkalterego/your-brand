@@ -1,7 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 
 const Contact = () => {
+  const leftColRef = useRef(null)
+  const rightColRef = useRef(null)
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (leftColRef.current) {
+            leftColRef.current.style.opacity = '1'
+            leftColRef.current.style.transform = 'translateX(0)'
+          }
+          if (rightColRef.current) {
+            setTimeout(() => {
+              rightColRef.current.style.opacity = '1'
+              rightColRef.current.style.transform = 'translateX(0)'
+            }, 200)
+          }
+        }
+      })
+    }, observerOptions)
+
+    if (leftColRef.current) observer.observe(leftColRef.current)
+
+    return () => {
+      if (leftColRef.current) observer.unobserve(leftColRef.current)
+    }
+  }, [])
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +62,15 @@ const Contact = () => {
       <div className="container-custom px-4">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-16">
           {/* Left - Contact Info */}
-          <div className="space-y-6 md:space-y-8">
+          <div 
+            ref={leftColRef}
+            className="space-y-6 md:space-y-8"
+            style={{
+              opacity: 0,
+              transform: 'translateX(-40px)',
+              transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+            }}
+          >
             <div>
               <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
                 Get In Touch
@@ -44,38 +85,38 @@ const Contact = () => {
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-4 md:space-y-6">
-              <div className="flex items-start space-x-3 md:space-x-4">
-                <div className="h-10 md:h-12 w-10 md:w-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F0F4F8' }}>
-                  <Phone className="h-5 md:h-6 w-5 md:w-6" style={{ color: '#60A5FA' }} />
+            <div className="space-y-3 md:space-y-6">
+              <div className="flex items-start space-x-2.5 md:space-x-4">
+                <div className="h-9 md:h-12 w-9 md:w-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F0F4F8' }}>
+                  <Phone className="h-4 md:h-6 w-4 md:w-6" style={{ color: '#60A5FA' }} />
                 </div>
                 <div>
-                  <div className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1E293B' }}>Phone</div>
-                  <a href="tel:+919876543210" className="hover:opacity-80 text-xs md:text-sm" style={{ color: '#64748B' }}>
-                    +91 98765 43210
+                  <div className="font-semibold mb-0.5 text-xs md:text-base" style={{ color: '#1E293B' }}>Call or WhatsApp</div>
+                  <a href="https://wa.me/918114806315" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 text-[11px] md:text-sm" style={{ color: '#64748B' }}>
+                    +91 8114806315
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-primary-600" />
+              <div className="flex items-start space-x-2.5 md:space-x-4">
+                <div className="h-9 md:h-12 w-9 md:w-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F0F4F8' }}>
+                  <Mail className="h-4 md:h-6 w-4 md:w-6" style={{ color: '#60A5FA' }} />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900 mb-1">Email</div>
-                  <a href="mailto:hello@aquabrand.in" className="text-gray-600 hover:text-primary-600">
-                    hello@aquabrand.in
+                  <div className="font-semibold mb-0.5 text-xs md:text-base" style={{ color: '#1E293B' }}>Email</div>
+                  <a href="mailto:wecare.aquadrops@gmail.com" className="hover:opacity-80 text-[11px] md:text-sm" style={{ color: '#64748B' }}>
+                    wecare.aquadrops@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-primary-600" />
+              <div className="flex items-start space-x-2.5 md:space-x-4">
+                <div className="h-9 md:h-12 w-9 md:w-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F0F4F8' }}>
+                  <MapPin className="h-4 md:h-6 w-4 md:w-6" style={{ color: '#60A5FA' }} />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900 mb-1">Location</div>
-                  <p className="text-gray-600">
+                  <div className="font-semibold mb-0.5 text-xs md:text-base" style={{ color: '#1E293B' }}>Location</div>
+                  <p className="text-[11px] md:text-sm" style={{ color: '#64748B' }}>
                     Bhubaneswar, Odisha, India
                   </p>
                 </div>
@@ -83,23 +124,31 @@ const Contact = () => {
             </div>
 
             {/* Business Hours */}
-            <div className="bg-white p-6 rounded-2xl border border-gray-200">
-              <h3 className="font-semibold text-gray-900 mb-3">Business Hours</h3>
-              <div className="space-y-2 text-sm text-gray-600">
+            <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl border border-gray-200">
+              <h3 className="font-semibold mb-2 md:mb-3 text-sm md:text-base" style={{ color: '#1E293B' }}>Business Hours</h3>
+              <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm" style={{ color: '#64748B' }}>
                 <div className="flex justify-between">
-                  <span>Monday - Saturday</span>
-                  <span>9:00 AM - 7:00 PM</span>
+                  <span>Mon - Sat</span>
+                  <span>9AM - 7PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sunday</span>
-                  <span>10:00 AM - 4:00 PM</span>
+                  <span>10AM - 4PM</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right - Contact Form */}
-          <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100">
+          <div 
+            ref={rightColRef}
+            className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100"
+            style={{
+              opacity: 0,
+              transform: 'translateX(40px)',
+              transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+            }}
+          >
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">

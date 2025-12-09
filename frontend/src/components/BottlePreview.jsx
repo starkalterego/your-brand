@@ -68,7 +68,7 @@ const BottlePreview = () => {
             <ellipse cx="125" cy="220" rx="35" ry="8" fill="url(#waterLineGradient)" opacity="0.4" />
           </g>
 
-          {/* Label - Professional white label with AquaBrand */}
+          {/* Label - Professional white label with AquaDrops */}
           <g id="label">
             {/* Label background */}
             <rect x="95" y="200" width="60" height="140" rx="3" fill="white" opacity="0.97" stroke="#d1d5db" strokeWidth="1.5" />

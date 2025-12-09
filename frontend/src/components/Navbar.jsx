@@ -14,12 +14,12 @@ const Navbar = () => {
 
   return (
     <nav className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
-      <div className="container-custom">
-        <div className="flex justify-between items-center h-16">
+      <div className="container-custom px-4">
+        <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Droplet className="h-8 w-8" style={{ color: '#60A5FA' }} />
-            <span className="text-xl font-semibold" style={{ color: '#1E293B' }}>AquaBrand</span>
+            <Droplet className="h-6 md:h-8 w-6 md:w-8" style={{ color: '#60A5FA' }} />
+            <span className="text-lg md:text-xl font-semibold" style={{ color: '#1E293B' }}>AquaDrops</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -47,8 +47,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="transition-colors"
+              className="p-2 -mr-2 transition-colors active:bg-slate-100 rounded-lg"
               style={{ color: '#475569' }}
+              aria-label="Toggle menu"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -57,14 +58,15 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4">
-            <div className="flex flex-col space-y-3">
+          <div className="md:hidden pb-4 px-2">
+            <div className="flex flex-col space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-700 hover:text-primary-600 transition-colors font-medium py-2"
+                  className="text-gray-700 hover:bg-slate-50 active:bg-slate-100 transition-all font-medium py-3 px-4 rounded-lg"
+                  style={{ color: '#475569' }}
                 >
                   {link.name}
                 </a>
@@ -72,7 +74,8 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors font-medium text-center"
+                className="text-white px-6 py-3 rounded-lg active:scale-95 transition-all font-medium text-center mt-2"
+                style={{ backgroundColor: '#0EA5E9' }}
               >
                 Get Quote
               </a>
