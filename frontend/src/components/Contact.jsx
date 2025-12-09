@@ -53,7 +53,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Add form submission logic here
-    console.log('Form submitted:', formData)
     alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.')
   }
 
