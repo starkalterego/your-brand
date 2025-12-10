@@ -110,10 +110,10 @@ const Features = () => {
   ]
 
   return (
-    <section id="features" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #F0F4F8, #ffffff, #F0F4F8)' }}>
-      <div className="container-custom px-4" ref={sectionRef}>
+    <section id="features" className="py-12 md:py-20 lg:py-24" style={{ background: 'linear-gradient(135deg, #F0F4F8, #ffffff, #F0F4F8)' }} ref={sectionRef}>
+      <div className="container-custom px-4">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 lg:mb-20">
           <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-5" style={{ backgroundColor: '#EFF6FF', color: '#0EA5E9', border: '1px solid #DBEAFE' }}>
             Why Choose Us
           </div>
@@ -132,34 +132,39 @@ const Features = () => {
           onTouchEnd={handleTouchEnd}
           onMouseEnter={() => window.innerWidth < 768 && setIsAutoScrolling(false)}
           onMouseLeave={() => window.innerWidth < 768 && setIsAutoScrolling(true)}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
         >
           {features.map((feature, index) => (
             <div
               key={index}
               ref={el => cardsRef.current[index] = el}
-              className="flex-shrink-0 w-[220px] sm:w-[240px] md:w-auto snap-center text-center group cursor-pointer p-5 md:p-6 rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1"
+              className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-auto snap-center text-center group cursor-pointer rounded-2xl bg-white transition-all duration-500 hover:scale-105 relative overflow-hidden"
               style={{
                 opacity: 0,
                 transform: 'translateY(30px) scale(0.9)',
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+                boxShadow: '0 6px 24px rgba(0, 0, 0, 0.06)',
                 border: '1px solid #E2E8F0'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.12)'}
-              onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)'}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.12)'}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 6px 24px rgba(0, 0, 0, 0.06)'}
             >
-              <div className="inline-flex h-14 md:h-16 w-14 md:w-16 rounded-xl items-center justify-center mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)' }}>
-                <feature.icon className="h-7 md:h-8 w-7 md:w-8" style={{ color: '#0EA5E9' }} />
+              {/* Gradient glow on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at top, rgba(96, 165, 250, 0.05), transparent 70%)' }}></div>
+              
+              <div className="relative p-7 md:p-8">
+                <div className="inline-flex h-16 md:h-18 w-16 md:w-18 rounded-2xl items-center justify-center mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)', boxShadow: '0 4px 16px rgba(14, 165, 233, 0.15)' }}>
+                  <feature.icon className="h-8 md:h-9 w-8 md:w-9" style={{ color: '#0EA5E9' }} />
+                </div>
+                
+                <h3 className="text-base md:text-lg font-black mb-3 md:mb-4" style={{ color: '#1E293B' }}>
+                  {feature.title}
+                </h3>
+                
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: '#64748B', lineHeight: '1.7' }}>
+                  {feature.description}
+                </p>
               </div>
-              
-              <h3 className="text-base md:text-lg font-bold mb-2 md:mb-3" style={{ color: '#1E293B' }}>
-                {feature.title}
-              </h3>
-              
-              <p className="text-sm md:text-base leading-relaxed" style={{ color: '#64748B', lineHeight: '1.6' }}>
-                {feature.description}
-              </p>
             </div>
           ))}
         </div>

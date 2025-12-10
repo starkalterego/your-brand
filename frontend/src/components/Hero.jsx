@@ -66,7 +66,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative pt-16 pb-10 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-50 overflow-hidden" style={{ backgroundColor: '#F0F4F8' }}>
+    <section className="relative pt-20 pb-8 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-50 overflow-hidden" style={{ backgroundColor: '#F0F4F8' }}>
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 -left-20 w-64 md:w-96 h-64 md:h-96 rounded-full blur-3xl animate-blob" style={{ backgroundColor: '#60A5FA20' }}></div>
@@ -175,15 +175,16 @@ const Hero = () => {
         </div>
 
         {/* Image Gallery Section Below */}
-        <div className="mt-8 md:mt-20 pt-8 md:pt-12">
-          <div className="text-center mb-6 md:mb-10">
-            <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-3" style={{ backgroundColor: '#DBEAFE', color: '#0EA5E9' }}>
+        <div className="mt-12 md:mt-20 pt-8 md:pt-12">
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-bold mb-4" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)', color: '#0EA5E9', border: '1px solid #BFDBFE' }}>
+              <Sparkles className="h-3 md:h-4 w-3 md:w-4 mr-2" />
               Our Portfolio
             </div>
-            <h3 className="text-xl md:text-3xl font-bold mb-2" style={{ color: '#1E293B' }}>
-              See Our Work in <span style={{ color: '#60A5FA' }}>Action</span>
+            <h3 className="text-2xl md:text-4xl font-black mb-3" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
+              See Our Work in <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to right, #60A5FA, #0EA5E9)' }}>Action</span>
             </h3>
-            <p className="text-xs md:text-base" style={{ color: '#64748B' }}>
+            <p className="text-sm md:text-lg" style={{ color: '#64748B' }}>
               Trusted by leading businesses across Odisha
             </p>
           </div>
@@ -194,11 +195,11 @@ const Hero = () => {
             onTouchEnd={handleTouchEnd}
             onMouseEnter={() => window.innerWidth < 768 && setIsAutoScrolling(false)}
             onMouseLeave={() => window.innerWidth < 768 && setIsAutoScrolling(true)}
-            className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4 md:mx-0 md:px-0"
+            className="flex md:grid md:grid-cols-3 gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6 -mx-4 px-4 md:mx-0 md:px-0"
           >
             {/* Wedding Events */}
-            <div className="group relative flex-shrink-0 w-[280px] md:w-auto snap-center rounded-xl md:rounded-2xl overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:-translate-y-1" style={{ borderColor: '#E2E8F0' }}>
-              <div className="relative h-48 md:h-64 overflow-hidden">
+            <div className="group relative flex-shrink-0 w-[300px] md:w-auto snap-center rounded-2xl overflow-hidden bg-white transition-all duration-500 hover:scale-[1.02]" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', border: '1px solid #E2E8F0' }}>
+              <div className="relative h-56 md:h-64 overflow-hidden">
                 <img 
                   src="/images/wedding.png"
                   alt="Wedding Events"
@@ -206,22 +207,22 @@ const Hero = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(96, 165, 250, 0.9)', color: 'white' }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div className="absolute top-4 right-4 px-4 py-2 rounded-xl text-xs font-bold backdrop-blur-md" style={{ background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.95), rgba(219, 39, 119, 0.95))', color: 'white', boxShadow: '0 4px 12px rgba(236, 72, 153, 0.4)' }}>
                   Weddings
                 </div>
-              </div>
-              <div className="bg-white p-4 md:p-5">
-                <h4 className="font-bold text-sm md:text-lg mb-1" style={{ color: '#1E293B' }}>Wedding Celebrations</h4>
-                <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                  Custom branded water bottles that add a personal touch to your special day
-                </p>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h4 className="font-bold text-base md:text-xl mb-2 text-white">Wedding Celebrations</h4>
+                  <p className="text-xs md:text-sm leading-relaxed text-white/90">
+                    Custom branded water bottles that add a personal touch
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Corporate Events */}
-            <div className="group relative flex-shrink-0 w-[280px] md:w-auto snap-center rounded-xl md:rounded-2xl overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:-translate-y-1" style={{ borderColor: '#E2E8F0' }}>
-              <div className="relative h-48 md:h-64 overflow-hidden">
+            <div className="group relative flex-shrink-0 w-[300px] md:w-auto snap-center rounded-2xl overflow-hidden bg-white transition-all duration-500 hover:scale-[1.02]" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', border: '1px solid #E2E8F0' }}>
+              <div className="relative h-56 md:h-64 overflow-hidden">
                 <img 
                   src="/images/meetings.png"
                   alt="Corporate Events"
@@ -229,22 +230,22 @@ const Hero = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(14, 165, 233, 0.9)', color: 'white' }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div className="absolute top-4 right-4 px-4 py-2 rounded-xl text-xs font-bold backdrop-blur-md" style={{ background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.95), rgba(6, 182, 212, 0.95))', color: 'white', boxShadow: '0 4px 12px rgba(14, 165, 233, 0.4)' }}>
                   Corporate
                 </div>
-              </div>
-              <div className="bg-white p-4 md:p-5">
-                <h4 className="font-bold text-sm md:text-lg mb-1" style={{ color: '#1E293B' }}>Corporate Events</h4>
-                <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                  Professional branded solutions for meetings, conferences and corporate gatherings
-                </p>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h4 className="font-bold text-base md:text-xl mb-2 text-white">Corporate Events</h4>
+                  <p className="text-xs md:text-sm leading-relaxed text-white/90">
+                    Professional branded solutions for conferences
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Hotel Hospitality */}
-            <div className="group relative flex-shrink-0 w-[280px] md:w-auto snap-center rounded-xl md:rounded-2xl overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:-translate-y-1" style={{ borderColor: '#E2E8F0' }}>
-              <div className="relative h-48 md:h-64 overflow-hidden">
+            <div className="group relative flex-shrink-0 w-[300px] md:w-auto snap-center rounded-2xl overflow-hidden bg-white transition-all duration-500 hover:scale-[1.02]" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', border: '1px solid #E2E8F0' }}>
+              <div className="relative h-56 md:h-64 overflow-hidden">
                 <img 
                   src="/images/hotels.png"
                   alt="Hotel Hospitality"
@@ -252,16 +253,16 @@ const Hero = () => {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm" style={{ backgroundColor: 'rgba(96, 165, 250, 0.9)', color: 'white' }}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div className="absolute top-4 right-4 px-4 py-2 rounded-xl text-xs font-bold backdrop-blur-md" style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(124, 58, 237, 0.95))', color: 'white', boxShadow: '0 4px 12px rgba(139, 92, 246, 0.4)' }}>
                   Hospitality
                 </div>
-              </div>
-              <div className="bg-white p-4 md:p-5">
-                <h4 className="font-bold text-sm md:text-lg mb-1" style={{ color: '#1E293B' }}>Hotel & Resorts</h4>
-                <p className="text-xs md:text-sm leading-relaxed" style={{ color: '#64748B' }}>
-                  Elevate guest experience with premium branded water for your hospitality business
-                </p>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h4 className="font-bold text-base md:text-xl mb-2 text-white">Hotel & Resorts</h4>
+                  <p className="text-xs md:text-sm leading-relaxed text-white/90">
+                    Premium branded water for hospitality excellence
+                  </p>
+                </div>
               </div>
             </div>
           </div>
