@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles, Award, Clock, Shield } from 'lucide-react'
 
 const Hero = () => {
   const leftContentRef = useRef(null)
@@ -79,12 +79,12 @@ const Hero = () => {
           {/* Left Content */}
           <div className="space-y-6 md:space-y-8 opacity-0 translate-x-[-50px]" ref={leftContentRef} style={{ transition: 'all 0.8s ease-out' }}>
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-3 md:mb-4" style={{ color: '#1E293B' }}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] mb-4 md:mb-5" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
                 Your Brand,
                 <br />
                 <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to right, #60A5FA, #0EA5E9)' }}>Every Drop</span>
               </h1>
-              <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: '#475569' }}>
+              <p className="text-base md:text-xl leading-relaxed max-w-xl" style={{ color: '#475569', lineHeight: '1.7' }}>
                 Elevate your events, hotels, and corporate spaces with custom-branded bottled water. 
                 Perfect for weddings, conferences, and hospitality services across Odisha.
               </p>
@@ -93,34 +93,46 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center text-white px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all transform hover:scale-105 active:scale-95 hover:shadow-2xl font-semibold shadow-lg text-sm md:text-base"
-                style={{ background: 'linear-gradient(to right, #0EA5E9, #06B6D4)', boxShadow: '0 10px 30px rgba(14, 165, 233, 0.3)' }}
+                className="group inline-flex items-center justify-center text-white px-7 md:px-9 py-3.5 md:py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-95 font-semibold text-sm md:text-base"
+                style={{ 
+                  background: 'linear-gradient(135deg, #0EA5E9, #06B6D4)', 
+                  boxShadow: '0 8px 24px rgba(14, 165, 233, 0.25)'
+                }}
               >
                 Start Your Order
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <a
                 href="#services"
-                className="group inline-flex items-center justify-center bg-white border-2 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-slate-50 active:bg-slate-100 transition-all font-semibold shadow-md hover:shadow-lg text-sm md:text-base"
-                style={{ borderColor: '#CBD5E1', color: '#1E293B' }}
+                className="group inline-flex items-center justify-center bg-white border-2 px-7 md:px-9 py-3.5 md:py-4 rounded-xl hover:bg-slate-50 active:bg-slate-100 transition-all duration-300 font-semibold hover:shadow-xl text-sm md:text-base"
+                style={{ borderColor: '#E2E8F0', color: '#1E293B', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)' }}
               >
                 Explore Services
               </a>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-2 md:gap-6 pt-4 md:pt-8 border-t" style={{ borderColor: '#CBD5E1' }}>
-              <div>
-                <div className="text-lg md:text-3xl font-bold" style={{ color: '#1E293B' }}>500+</div>
-                <div className="text-[10px] md:text-sm font-medium leading-tight" style={{ color: '#64748B' }}>Happy Clients</div>
+            <div className="grid grid-cols-3 gap-3 md:gap-8 pt-6 md:pt-10 border-t" style={{ borderColor: '#E2E8F0' }}>
+              <div className="text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <Award className="h-4 md:h-5 w-4 md:w-5" style={{ color: '#60A5FA' }} />
+                  <div className="text-xl md:text-4xl font-bold" style={{ color: '#1E293B' }}>500+</div>
+                </div>
+                <div className="text-[11px] md:text-sm font-medium" style={{ color: '#64748B' }}>Happy Clients</div>
               </div>
-              <div>
-                <div className="text-lg md:text-3xl font-bold" style={{ color: '#1E293B' }}>24h</div>
-                <div className="text-[10px] md:text-sm font-medium leading-tight" style={{ color: '#64748B' }}>Quick Delivery</div>
+              <div className="text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <Clock className="h-4 md:h-5 w-4 md:w-5" style={{ color: '#60A5FA' }} />
+                  <div className="text-xl md:text-4xl font-bold" style={{ color: '#1E293B' }}>24h</div>
+                </div>
+                <div className="text-[11px] md:text-sm font-medium" style={{ color: '#64748B' }}>Quick Delivery</div>
               </div>
-              <div>
-                <div className="text-lg md:text-3xl font-bold" style={{ color: '#1E293B' }}>100%</div>
-                <div className="text-[10px] md:text-sm font-medium leading-tight" style={{ color: '#64748B' }}>FSSAI Certified</div>
+              <div className="text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <Shield className="h-4 md:h-5 w-4 md:w-5" style={{ color: '#60A5FA' }} />
+                  <div className="text-xl md:text-4xl font-bold" style={{ color: '#1E293B' }}>100%</div>
+                </div>
+                <div className="text-[11px] md:text-sm font-medium" style={{ color: '#64748B' }}>FSSAI Certified</div>
               </div>
             </div>
           </div>

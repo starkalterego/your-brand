@@ -109,15 +109,15 @@ const Services = () => {
     <section id="services" className="py-16 md:py-24" style={{ background: 'linear-gradient(to bottom, #ffffff, #F0F4F8, #ffffff)' }}>
       <div className="container-custom px-4" ref={sectionRef}>
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
-          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
+        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
+          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-5" style={{ backgroundColor: '#EFF6FF', color: '#0EA5E9', border: '1px solid #DBEAFE' }}>
             Our Services
           </div>
-          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-[1.1]" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
             Tailored Solutions for
             <span style={{ color: '#60A5FA' }}> Every Occasion</span>
           </h2>
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed" style={{ color: '#64748B' }}>
+          <p className="text-base md:text-xl leading-relaxed" style={{ color: '#64748B', lineHeight: '1.7' }}>
             From intimate weddings to large corporate events, we provide custom-branded water solutions that make an impact.
           </p>
         </div>
@@ -135,30 +135,33 @@ const Services = () => {
             <div
               key={index}
               ref={el => cardsRef.current[index] = el}
-              className="group flex-shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-center p-5 md:p-8 rounded-xl md:rounded-3xl border hover:shadow-2xl transition-all duration-500 bg-white transform hover:-translate-y-2"
+              className="group flex-shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-center p-6 md:p-8 rounded-2xl border bg-white transition-all duration-300 hover:-translate-y-1"
               style={{ 
-                borderColor: '#CBD5E1',
+                borderColor: '#E2E8F0',
                 opacity: 0,
                 transform: 'translateY(30px) scale(0.95)',
-                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)'
               }}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.12)'}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)'}
             >
-              <div className="h-11 md:h-14 w-11 md:w-14 rounded-lg md:rounded-xl flex items-center justify-center mb-2.5 md:mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md" style={{ background: 'linear-gradient(to bottom right, #DBEAFE, #60A5FA30)' }}>
-                <service.icon className="h-5 md:h-7 w-5 md:w-7" style={{ color: '#60A5FA' }} />
+              <div className="h-12 md:h-14 w-12 md:w-14 rounded-xl flex items-center justify-center mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)' }}>
+                <service.icon className="h-6 md:h-7 w-6 md:w-7" style={{ color: '#0EA5E9' }} />
               </div>
               
-              <h3 className="text-base md:text-xl font-semibold mb-1.5 md:mb-3" style={{ color: '#1E293B' }}>
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3" style={{ color: '#1E293B' }}>
                 {service.title}
               </h3>
               
-              <p className="text-xs md:text-base text-gray-600 mb-2.5 md:mb-4 leading-relaxed">
+              <p className="text-sm md:text-base mb-4 md:mb-5 leading-relaxed" style={{ color: '#64748B', lineHeight: '1.6' }}>
                 {service.description}
               </p>
 
-              <ul className="space-y-1 md:space-y-2">
+              <ul className="space-y-2">
                 {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-[11px] md:text-sm text-gray-600">
-                    <span className="h-1 w-1 md:h-1.5 md:w-1.5 bg-primary-600 rounded-full mr-1.5 md:mr-2 flex-shrink-0"></span>
+                  <li key={idx} className="flex items-center text-xs md:text-sm" style={{ color: '#64748B' }}>
+                    <span className="h-1.5 w-1.5 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: '#60A5FA' }}></span>
                     {feature}
                   </li>
                 ))}

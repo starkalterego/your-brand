@@ -1,183 +1,204 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Star, Quote, Award, TrendingUp, Users } from 'lucide-react'
+import React, { useRef, useEffect } from 'react'
+import { Star, Quote } from 'lucide-react'
 
 const Testimonials = () => {
   const scrollRef = useRef(null)
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
-  const autoScrollInterval = useRef(null)
 
   const testimonials = [
     {
       name: 'Priya Sharma',
       role: 'Wedding Planner',
       company: 'Elite Events Bhubaneswar',
-      content: 'The custom water bottles added such a personal touch to our client\'s wedding. Guests loved seeing the couple\'s names and wedding date on every bottle!',
+      content: 'The custom water bottles added such a personal touch to our client\'s wedding. The quality exceeded our expectations and guests absolutely loved the personalized design.',
       rating: 5,
-      avatar: 'PS'
+      avatar: 'PS',
+      gradient: 'from-pink-500 to-rose-500'
     },
     {
       name: 'Rajesh Kumar',
       role: 'General Manager',
       company: 'Grand Bay Resort',
-      content: 'We\'ve been using these services for all our in-room water bottles. The quality is excellent and our guests appreciate the branded touch.',
+      content: 'We\'ve partnered with AquaDrops for over a year now. The consistency in quality and the professional branding has elevated our guest experience significantly.',
       rating: 5,
-      avatar: 'RK'
+      avatar: 'RK',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       name: 'Anita Patel',
       role: 'HR Director',
       company: 'TechCorp India',
-      content: 'Perfect solution for our corporate events and daily office use. The ordering process was smooth and delivery was always on time.',
+      content: 'Perfect solution for our corporate events and daily office use. The ordering process is seamless, delivery is always punctual, and the team is incredibly responsive.',
       rating: 5,
-      avatar: 'AP'
+      avatar: 'AP',
+      gradient: 'from-purple-500 to-violet-500'
     },
     {
       name: 'Suresh Nayak',
       role: 'Event Coordinator',
       company: 'Odisha Convention Center',
-      content: 'Outstanding service and product quality. The custom branding options helped us create a professional impression at our conferences.',
+      content: 'Outstanding service and premium product quality. The custom branding options are versatile and helped us create a lasting professional impression.',
       rating: 5,
-      avatar: 'SN'
+      avatar: 'SN',
+      gradient: 'from-green-500 to-emerald-500'
+    },
+    {
+      name: 'Meera Desai',
+      role: 'Marketing Head',
+      company: 'StartUp Hub Odisha',
+      content: 'Innovative branding solution that perfectly aligns with our modern approach. The bottles are conversation starters at every event we host.',
+      rating: 5,
+      avatar: 'MD',
+      gradient: 'from-orange-500 to-amber-500'
+    },
+    {
+      name: 'Vikram Singh',
+      role: 'Operations Manager',
+      company: 'Royal Palace Hotel',
+      content: 'The attention to detail and commitment to quality is unmatched. Our guests frequently compliment the branded water bottles in their rooms.',
+      rating: 5,
+      avatar: 'VS',
+      gradient: 'from-indigo-500 to-blue-500'
     }
   ]
 
-  const stats = [
-    { icon: Users, value: '500+', label: 'Happy Clients' },
-    { icon: Award, value: '50K+', label: 'Bottles Delivered' },
-    { icon: TrendingUp, value: '98%', label: 'Satisfaction Rate' }
-  ]
+  // Duplicate testimonials for seamless infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
   useEffect(() => {
-    const scrollElement = scrollRef.current
-    
-    const startAutoScroll = () => {
-      if (window.innerWidth < 768 && isAutoScrolling) {
-        autoScrollInterval.current = setInterval(() => {
-          if (scrollRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
-            
-            if (scrollLeft >= scrollWidth - clientWidth - 10) {
-              scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
-            } else {
-              scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth * 0.85, behavior: 'smooth' })
-            }
-          }
-        }, 4000)
+    const scrollContainer = scrollRef.current
+    if (!scrollContainer) return
+
+    let scrollPosition = 0
+    const scrollSpeed = 0.5 // pixels per frame
+    let animationId
+
+    const scroll = () => {
+      scrollPosition += scrollSpeed
+      
+      // Reset when scrolled through one set of testimonials
+      if (scrollPosition >= scrollContainer.scrollWidth / 3) {
+        scrollPosition = 0
       }
+      
+      scrollContainer.scrollLeft = scrollPosition
+      animationId = requestAnimationFrame(scroll)
     }
 
-    startAutoScroll()
-    
+    animationId = requestAnimationFrame(scroll)
+
+    // Pause on hover
+    const handleMouseEnter = () => cancelAnimationFrame(animationId)
+    const handleMouseLeave = () => {
+      animationId = requestAnimationFrame(scroll)
+    }
+
+    scrollContainer.addEventListener('mouseenter', handleMouseEnter)
+    scrollContainer.addEventListener('mouseleave', handleMouseLeave)
+
     return () => {
-      if (autoScrollInterval.current) {
-        clearInterval(autoScrollInterval.current)
-      }
+      cancelAnimationFrame(animationId)
+      scrollContainer.removeEventListener('mouseenter', handleMouseEnter)
+      scrollContainer.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [isAutoScrolling])
-
-  const handleTouchStart = () => {
-    setIsAutoScrolling(false)
-    if (autoScrollInterval.current) {
-      clearInterval(autoScrollInterval.current)
-    }
-  }
-
-  const handleTouchEnd = () => {
-    setTimeout(() => setIsAutoScrolling(true), 6000)
-  }
+  }, [])
 
   return (
-    <section id="testimonials" className="py-16 md:py-24 relative" style={{ background: 'linear-gradient(to bottom, #F0F4F8, #ffffff)' }}>
-      <div className="container-custom px-4">
+    <section id="testimonials" className="py-20 md:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 50%, #F8FAFC 100%)' }}>
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-20"></div>
+      </div>
+
+      <div className="container-custom px-4 relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4" style={{ backgroundColor: '#DBEAFE', color: '#0EA5E9' }}>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-bold mb-5" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)', color: '#0EA5E9', border: '1px solid #BFDBFE' }}>
             <Star className="h-4 w-4 mr-2 fill-current" />
-            Client Testimonials
+            Trusted by 500+ Clients
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
-            What Our Clients
-            <span style={{ color: '#60A5FA' }}> Say About Us</span>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 leading-[1.1]" style={{ color: '#1E293B', letterSpacing: '-0.03em' }}>
+            Don't Just Take
+            <br />
+            <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(to right, #60A5FA, #0EA5E9)' }}>Our Word For It</span>
           </h2>
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: '#64748B' }}>
-            Real experiences from businesses and event planners across Odisha
+          <p className="text-lg md:text-xl" style={{ color: '#64748B', lineHeight: '1.7' }}>
+            Real stories from businesses transforming their brand presence
           </p>
         </div>
 
-        {/* Stats Bar */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto">
-          {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className="text-center p-4 md:p-6 rounded-xl md:rounded-2xl border"
-              style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', borderColor: '#CBD5E1' }}
-            >
-              <stat.icon className="h-6 md:h-8 w-6 md:w-8 mx-auto mb-2 md:mb-3" style={{ color: '#60A5FA' }} />
-              <div className="text-xl md:text-3xl font-bold mb-1" style={{ color: '#1E293B' }}>{stat.value}</div>
-              <div className="text-xs md:text-sm font-medium" style={{ color: '#64748B' }}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        {/* Infinite Scroll Container */}
+        <div className="relative">
+          {/* Gradient overlays for fade effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none"></div>
 
-        {/* Testimonials Grid */}
-        <div 
-          ref={scrollRef}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={() => window.innerWidth < 768 && setIsAutoScrolling(false)}
-          onMouseLeave={() => window.innerWidth < 768 && setIsAutoScrolling(true)}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
-        >
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-auto snap-center group"
-            >
-              <div className="h-full bg-white rounded-xl md:rounded-2xl p-6 md:p-8 border transition-all duration-300 hover:shadow-xl hover:border-blue-200" style={{ borderColor: '#E2E8F0' }}>
-                {/* Header with Avatar and Quote */}
-                <div className="flex items-start justify-between mb-4 md:mb-6">
-                  <div className="flex items-center gap-3 md:gap-4">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base" style={{ background: 'linear-gradient(to bottom right, #60A5FA, #0EA5E9)' }}>
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-hidden pb-4"
+            style={{ scrollBehavior: 'auto' }}
+          >
+            {duplicatedTestimonials.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="flex-shrink-0 w-[380px] md:w-[420px] group"
+              >
+                <div className="relative h-full bg-white rounded-3xl p-7 md:p-8 transition-all duration-500 hover:scale-105" 
+                  style={{ 
+                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.06)',
+                    border: '1px solid #E2E8F0'
+                  }}>
+                  
+                  {/* Quote icon background */}
+                  <div className="absolute -top-4 -right-4 opacity-5">
+                    <Quote className="h-32 w-32" style={{ color: '#0EA5E9' }} />
+                  </div>
+
+                  {/* Avatar and Info */}
+                  <div className="flex items-start gap-4 mb-6 relative z-10">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white font-bold text-xl shadow-2xl ring-4 ring-white`}>
                       {testimonial.avatar}
                     </div>
-                    <div>
-                      <div className="font-bold text-sm md:text-base" style={{ color: '#1E293B' }}>{testimonial.name}</div>
-                      <div className="text-xs md:text-sm" style={{ color: '#64748B' }}>{testimonial.role}</div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg mb-1" style={{ color: '#1E293B' }}>{testimonial.name}</h4>
+                      <p className="text-sm mb-2" style={{ color: '#64748B' }}>{testimonial.role}</p>
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-current" style={{ color: '#FBBF24' }} />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <Quote className="h-6 md:h-8 w-6 md:w-8 opacity-20" style={{ color: '#60A5FA' }} />
-                </div>
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" style={{ color: '#FCD34D' }} />
-                  ))}
-                </div>
+                  {/* Content */}
+                  <p className="text-base leading-relaxed mb-6 relative z-10" style={{ color: '#475569', lineHeight: '1.75' }}>
+                    "{testimonial.content}"
+                  </p>
 
-                {/* Content */}
-                <p className="text-sm md:text-base leading-relaxed mb-4 md:mb-6" style={{ color: '#475569' }}>
-                  "{testimonial.content}"
-                </p>
-
-                {/* Company Tag */}
-                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-xs md:text-sm font-medium" style={{ backgroundColor: '#F0F4F8', color: '#0EA5E9' }}>
-                  {testimonial.company}
+                  {/* Company badge */}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold relative z-10" 
+                    style={{ background: 'linear-gradient(135deg, #F0F9FF, #E0F2FE)', color: '#0EA5E9' }}>
+                    <div className="w-2 h-2 rounded-full bg-current animate-pulse"></div>
+                    {testimonial.company}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Mobile Scroll Indicators */}
-        <div className="flex justify-center gap-2 mt-8 md:hidden">
-          {testimonials.map((_, index) => (
-            <div
-              key={index}
-              className="h-2 w-2 rounded-full transition-all"
-              style={{ backgroundColor: '#CBD5E1' }}
-            />
-          ))}
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <p className="text-base mb-4" style={{ color: '#64748B' }}>
+            Join 500+ satisfied clients
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+            style={{ background: 'linear-gradient(135deg, #0EA5E9, #06B6D4)' }}
+          >
+            Start Your Order Today
+          </a>
         </div>
       </div>
     </section>

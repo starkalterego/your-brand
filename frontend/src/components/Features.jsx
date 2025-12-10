@@ -113,14 +113,14 @@ const Features = () => {
     <section id="features" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #F0F4F8, #ffffff, #F0F4F8)' }}>
       <div className="container-custom px-4" ref={sectionRef}>
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
-          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
+        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
+          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-5" style={{ backgroundColor: '#EFF6FF', color: '#0EA5E9', border: '1px solid #DBEAFE' }}>
             Why Choose Us
           </div>
-          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-[1.1]" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
             Why Choose <span style={{ color: '#60A5FA' }}>AquaDrops?</span>
           </h2>
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed" style={{ color: '#64748B' }}>
+          <p className="text-base md:text-xl leading-relaxed" style={{ color: '#64748B', lineHeight: '1.7' }}>
             Combining quality, compliance, and creativity to deliver premium branded water solutions.
           </p>
         </div>
@@ -138,22 +138,26 @@ const Features = () => {
             <div
               key={index}
               ref={el => cardsRef.current[index] = el}
-              className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-auto snap-center text-center group cursor-pointer"
+              className="flex-shrink-0 w-[220px] sm:w-[240px] md:w-auto snap-center text-center group cursor-pointer p-5 md:p-6 rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1"
               style={{
                 opacity: 0,
                 transform: 'translateY(30px) scale(0.9)',
-                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E2E8F0'
               }}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.12)'}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)'}
             >
-              <div className="inline-flex h-12 md:h-16 w-12 md:w-16 rounded-lg md:rounded-2xl shadow-lg items-center justify-center mb-3 md:mb-6 group-hover:scale-125 group-hover:shadow-2xl transition-all duration-300" style={{ background: 'linear-gradient(to bottom right, #ffffff, #F0F4F8)', boxShadow: '0 10px 30px rgba(96, 165, 250, 0.15)' }}>
-                <feature.icon className="h-6 md:h-8 w-6 md:w-8 group-hover:scale-110 transition-transform" style={{ color: '#60A5FA' }} />
+              <div className="inline-flex h-14 md:h-16 w-14 md:w-16 rounded-xl items-center justify-center mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)' }}>
+                <feature.icon className="h-7 md:h-8 w-7 md:w-8" style={{ color: '#0EA5E9' }} />
               </div>
               
-              <h3 className="text-sm md:text-xl font-semibold mb-1.5 md:mb-3" style={{ color: '#1E293B' }}>
+              <h3 className="text-base md:text-lg font-bold mb-2 md:mb-3" style={{ color: '#1E293B' }}>
                 {feature.title}
               </h3>
               
-              <p className="text-xs md:text-base leading-relaxed" style={{ color: '#64748B' }}>
+              <p className="text-sm md:text-base leading-relaxed" style={{ color: '#64748B', lineHeight: '1.6' }}>
                 {feature.description}
               </p>
             </div>

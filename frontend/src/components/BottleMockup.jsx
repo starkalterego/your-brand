@@ -46,15 +46,15 @@ const BottleMockup = () => {
     <section id="mockup" className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #F0F4F8, #ffffff, #F0F4F8)' }}>
       <div className="container-custom px-4">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
-          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
+        <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20">
+          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-5" style={{ backgroundColor: '#EFF6FF', color: '#0EA5E9', border: '1px solid #DBEAFE' }}>
             Design Preview
           </div>
-          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-[1.1]" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
             Visualize Your
             <span style={{ color: '#60A5FA' }}> Custom Label</span>
           </h2>
-          <p className="text-base md:text-lg lg:text-xl leading-relaxed" style={{ color: '#64748B' }}>
+          <p className="text-base md:text-xl leading-relaxed" style={{ color: '#64748B', lineHeight: '1.7' }}>
             Upload your design and preview it on our premium water bottle
           </p>
         </div>

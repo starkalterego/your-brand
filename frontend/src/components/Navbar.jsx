@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Menu, X, Droplet } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navLinks = [
     { name: 'Services', href: '#services' },
@@ -13,13 +22,18 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+    <nav 
+      className="fixed w-full bg-white/95 backdrop-blur-md z-50 transition-all duration-300"
+      style={{
+        boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : '0 1px 3px rgba(0, 0, 0, 0.05)'
+      }}
+    >
       <div className="container-custom px-4">
-        <div className="flex justify-between items-center h-14 md:h-16">
+        <div className="flex justify-between items-center h-16 md:h-18">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Droplet className="h-6 md:h-8 w-6 md:w-8" style={{ color: '#60A5FA' }} />
-            <span className="text-lg md:text-xl font-semibold" style={{ color: '#1E293B' }}>AquaDrops</span>
+          <div className="flex items-center space-x-2 group cursor-pointer">
+            <Droplet className="h-7 md:h-9 w-7 md:w-9 transition-transform group-hover:scale-110" style={{ color: '#60A5FA' }} />
+            <span className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: '#1E293B' }}>AquaDrops</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -28,15 +42,16 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="transition-colors font-medium hover:opacity-80"
+                className="relative transition-colors font-medium group"
                 style={{ color: '#475569' }}
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: '#60A5FA' }}></span>
               </a>
             ))}
             <a
               href="#contact"
-              className="text-white px-6 py-2 rounded-full transition-colors font-medium"
+              className="text-white px-6 py-2.5 rounded-full transition-all duration-300 font-semibold hover:shadow-lg hover:scale-105 active:scale-95"
               style={{ backgroundColor: '#0EA5E9' }}
             >
               Get Quote

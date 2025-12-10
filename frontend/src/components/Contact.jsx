@@ -71,27 +71,27 @@ const Contact = () => {
             }}
           >
             <div>
-              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4" style={{ backgroundColor: '#F0F4F8', color: '#1E293B' }}>
+              <div className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-5" style={{ backgroundColor: '#EFF6FF', color: '#0EA5E9', border: '1px solid #DBEAFE' }}>
                 Get In Touch
               </div>
-              <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight" style={{ color: '#1E293B' }}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 leading-[1.1]" style={{ color: '#1E293B', letterSpacing: '-0.02em' }}>
                 Let's Create Something
                 <span style={{ color: '#60A5FA' }}> Special</span>
               </h2>
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed" style={{ color: '#64748B' }}>
+              <p className="text-base md:text-lg leading-relaxed" style={{ color: '#64748B', lineHeight: '1.7' }}>
                 Get in touch for a free quote and design consultation. We're here to make your brand shine.
               </p>
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-3 md:space-y-6">
-              <div className="flex items-start space-x-2.5 md:space-x-4">
-                <div className="h-9 md:h-12 w-9 md:w-12 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F0F4F8' }}>
-                  <Phone className="h-4 md:h-6 w-4 md:w-6" style={{ color: '#60A5FA' }} />
+            <div className="space-y-4 md:space-y-5">
+              <div className="flex items-start space-x-3 md:space-x-4 p-4 rounded-xl transition-all duration-300 hover:bg-slate-50">
+                <div className="h-11 md:h-12 w-11 md:w-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #EFF6FF, #DBEAFE)' }}>
+                  <Phone className="h-5 md:h-6 w-5 md:w-6" style={{ color: '#0EA5E9' }} />
                 </div>
                 <div>
-                  <div className="font-semibold mb-0.5 text-xs md:text-base" style={{ color: '#1E293B' }}>Call or WhatsApp</div>
-                  <a href="https://wa.me/918114806315" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 text-[11px] md:text-sm" style={{ color: '#64748B' }}>
+                  <div className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1E293B' }}>Call or WhatsApp</div>
+                  <a href="https://wa.me/918114806315" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity text-sm md:text-base" style={{ color: '#64748B' }}>
                     +91 8114806315
                   </a>
                 </div>
@@ -141,16 +141,18 @@ const Contact = () => {
           {/* Right - Contact Form */}
           <div 
             ref={rightColRef}
-            className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-2xl border border-gray-100"
+            className="bg-white p-6 md:p-10 rounded-2xl"
             style={{
               opacity: 0,
               transform: 'translateX(40px)',
-              transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+              transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #E2E8F0'
             }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                <label htmlFor="name" className="block text-sm font-semibold mb-2" style={{ color: '#1E293B' }}>
                   Full Name *
                 </label>
                 <input
@@ -160,13 +162,22 @@ const Contact = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-colors text-sm md:text-base"
+                  className="w-full px-4 py-3 rounded-xl border transition-all duration-200 outline-none text-sm md:text-base"
+                  style={{ borderColor: '#E2E8F0' }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#60A5FA'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(96, 165, 250, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#E2E8F0'
+                    e.target.style.boxShadow = 'none'
+                  }}
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                <label htmlFor="email" className="block text-sm font-semibold mb-2" style={{ color: '#1E293B' }}>
                   Email Address *
                 </label>
                 <input
@@ -176,13 +187,22 @@ const Contact = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-colors text-sm md:text-base"
+                  className="w-full px-4 py-3 rounded-xl border transition-all duration-200 outline-none text-sm md:text-base"
+                  style={{ borderColor: '#E2E8F0' }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#60A5FA'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(96, 165, 250, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#E2E8F0'
+                    e.target.style.boxShadow = 'none'
+                  }}
                   placeholder="your@email.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                <label htmlFor="phone" className="block text-sm font-semibold mb-2" style={{ color: '#1E293B' }}>
                   Phone Number *
                 </label>
                 <input
@@ -192,13 +212,22 @@ const Contact = () => {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-colors text-sm md:text-base"
+                  className="w-full px-4 py-3 rounded-xl border transition-all duration-200 outline-none text-sm md:text-base"
+                  style={{ borderColor: '#E2E8F0' }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#60A5FA'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(96, 165, 250, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#E2E8F0'
+                    e.target.style.boxShadow = 'none'
+                  }}
                   placeholder="+91 XXXXX XXXXX"
                 />
               </div>
 
               <div>
-                <label htmlFor="eventType" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                <label htmlFor="eventType" className="block text-sm font-semibold mb-2" style={{ color: '#1E293B' }}>
                   Event/Service Type
                 </label>
                 <select
@@ -206,7 +235,16 @@ const Contact = () => {
                   name="eventType"
                   value={formData.eventType}
                   onChange={handleChange}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-colors text-sm md:text-base"
+                  className="w-full px-4 py-3 rounded-xl border transition-all duration-200 outline-none text-sm md:text-base"
+                  style={{ borderColor: '#E2E8F0' }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#60A5FA'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(96, 165, 250, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#E2E8F0'
+                    e.target.style.boxShadow = 'none'
+                  }}
                 >
                   <option value="">Select an option</option>
                   <option value="wedding">Wedding/Event</option>
@@ -218,7 +256,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">
+                <label htmlFor="message" className="block text-sm font-semibold mb-2" style={{ color: '#1E293B' }}>
                   Message
                 </label>
                 <textarea
@@ -227,14 +265,29 @@ const Contact = () => {
                   rows="4"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg md:rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-colors resize-none text-sm md:text-base"
+                  className="w-full px-4 py-3 rounded-xl border transition-all duration-200 outline-none resize-none text-sm md:text-base"
+                  style={{ borderColor: '#E2E8F0' }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#60A5FA'
+                    e.target.style.boxShadow = '0 0 0 3px rgba(96, 165, 250, 0.1)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#E2E8F0'
+                    e.target.style.boxShadow = 'none'
+                  }}
                   placeholder="Tell us about your requirements..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-primary-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl hover:bg-primary-700 transition-colors font-medium flex items-center justify-center space-x-2 shadow-lg shadow-primary-200 text-sm md:text-base"
+                className="w-full text-white px-6 md:px-8 py-3.5 md:py-4 rounded-xl transition-all duration-300 font-semibold flex items-center justify-center space-x-2 text-sm md:text-base hover:scale-[1.02] active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #0EA5E9, #06B6D4)',
+                  boxShadow: '0 8px 24px rgba(14, 165, 233, 0.25)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 12px 32px rgba(14, 165, 233, 0.35)'}
+                onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 8px 24px rgba(14, 165, 233, 0.25)'}
               >
                 <span>Send Message</span>
                 <Send className="h-4 md:h-5 w-4 md:w-5" />
